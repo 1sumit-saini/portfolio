@@ -1,75 +1,680 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #f4f4f4;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    h1 {
-      margin-bottom: 0;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #007acc;
-    }
-    section {
-      margin-bottom: 40px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 40px;
-    }
-  </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit Saini - Drupal Developer</title>
+    <meta name="description" content="Drupal Developer Portfolio" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .center {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+                    backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .profile-icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .profile-icon svg {
+            width: 64px;
+            height: 64px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #1a202c;
+        }
+
+        .hero .name-highlight {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #1a202c;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 1rem;
+        }
+
+        .card h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            -o-object-fit: cover;
+               object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 200px;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .skill-percentage {
+            color: #64748b;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            background: #1a202c;
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons,
+            .about-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
 <body>
-
-  <header>
-    <h1>John Doe</h1>
+    <!-- Navigation -->
     <nav>
-      <a href="#about">About Me</a> |
-      <a href="#projects">Projects</a> |
-      <a href="#contact">Contact</a>
+        <div class="nav-content">
+            <div class="logo"></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#certification">Certification</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I'm John, a web developer passionate about building beautiful and functional websites.</p>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQG42Dbp3p7yFg/profile-displayphoto-shrink_400_400/B4DZXIUSTTH4Ak-/0/1742822516591?e=1753315200&v=beta&t=-r7kAn0YaOOS9uhTlaNDUmM4d6C2u5CEUL20W0HfFvU" 
+                 alt="Profile" class="profile-img">
+            <h1>Hi, I'm <span class="name-highlight">Sumit Saini</span></h1>
+            <p>Drupal Developer with 6+ years building multisite/multidomain, multilingual, scalable and secure web applications</p>
+            <div class="hero-buttons">
+                <a href="https://www.drupal.org/u/sumit-saini" class="btn btn-primary">
+                    <svg width="30" height="30" viewBox="0 0 35 60" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M36.654 19.6521C36.6249 19.594 36.5958 19.5649 36.5376 19.5067C33.688 16.3082 29.6462 11.772 26.7384 8.54434C25.8369 7.58476 24.9355 6.62519 24.0923 5.63654C23.8887 5.40391 23.7143 5.17129 23.5107 4.93867C23.3362 4.7642 23.249 4.64789 23.249 4.64789H23.2781C22.2894 3.48477 21.5043 2.17626 20.9518 0.780513L20.8064 0.460655C20.8064 0.431577 20.7774 0.431577 20.7483 0.402499C20.7192 0.402499 20.6611 0.373421 20.632 0.373421H20.6029C20.5448 0.373421 20.5157 0.402499 20.4866 0.402499C20.4575 0.431577 20.4575 0.431577 20.4284 0.460655L20.283 0.780513C19.7015 2.17626 18.9164 3.48477 17.9568 4.64789H17.9859C17.9859 4.64789 17.8987 4.7642 17.7242 4.93867C17.5206 5.17129 17.3462 5.40391 17.1426 5.63654C16.2703 6.62519 15.3979 7.58476 14.4965 8.54434C11.5887 11.772 7.51781 16.3082 4.66816 19.5067C4.63908 19.5649 4.61001 19.594 4.55185 19.6521C-6.20701 33.9876 5.48235 45.6769 5.48235 45.6769H5.45327C8.91355 49.6897 13.8277 52.1613 19.0908 52.5393C19.5561 52.5975 20.0504 52.6266 20.5738 52.6266H20.6029C21.0972 52.6266 21.5916 52.5975 22.0859 52.5393C27.3781 52.1613 32.2632 49.6897 35.7235 45.6769H35.6944C35.7235 45.6769 47.4128 33.9876 36.654 19.6521ZM11.5887 29.7422L11.327 30.1493L11.2979 30.1784C9.32064 32.5628 8.15752 35.1216 7.77951 37.6514C7.72135 37.9713 7.43057 38.1748 7.13979 38.1167C6.93625 38.0876 6.79086 37.9422 6.70362 37.7677C6.18022 36.5465 5.83128 35.267 5.65681 33.9585C5.0171 29.3351 6.41284 25.2933 9.3788 21.833C10.571 20.4663 11.7632 19.0997 12.9554 17.733C13.1589 17.5004 13.5079 17.4713 13.7405 17.6748C13.7696 17.7039 13.7696 17.7039 13.7987 17.733C14.7582 18.8379 16.0086 20.2628 17.4043 21.8911C17.5788 22.0947 17.5788 22.4145 17.4043 22.6472C15.4852 24.9443 13.4497 27.3869 11.6178 29.7131L11.5887 29.7422ZM28.1341 41.7223C27.0291 44.6301 24.8483 46.3748 21.766 46.8691C17.3752 47.5379 13.2752 44.5429 12.6065 40.1521C12.6065 40.094 12.6065 40.0649 12.5774 40.0067C12.2284 37.5351 12.9845 35.3543 14.5838 33.4933C16.4447 31.3124 20.5448 26.2528 20.6029 26.1656C20.6901 26.2528 25.0518 31.6904 26.6802 33.6096C28.7447 36.023 29.2391 38.7855 28.1341 41.7223ZM34.6185 37.1571C34.5894 37.2443 34.5313 37.3606 34.5022 37.4479C34.3859 37.7386 34.066 37.884 33.7752 37.7677C33.6008 37.6805 33.4554 37.5351 33.4263 37.3316C33.0192 34.889 31.8561 32.4465 29.966 30.1493L29.9369 30.1202L29.7625 29.8585L29.6462 29.7131C28.1341 27.794 20.1377 18.4309 16.6483 14.3309C16.4738 14.1273 16.4738 13.8075 16.6483 13.5748C17.8114 12.2954 18.9745 11.016 20.1086 9.70746C20.3121 9.47483 20.6611 9.47483 20.8937 9.67838L20.9228 9.70746C21.4462 10.2599 21.9405 10.8124 22.4348 11.394C25.6043 14.9415 28.8029 18.4309 31.8852 22.0075C35.7816 26.5145 36.683 31.6904 34.6185 37.1571Z"></path>
+                      </svg>
+                    Drupal Profile
+                </a>
+                <a href="https://www.linkedin.com/in/saini-sumit/" target="_blank" class="btn btn-outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Project One</strong>: A responsive portfolio website.</li>
-      <li><strong>Project Two</strong>: A to-do app built with JavaScript.</li>
-    </ul>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div>
+                    <p class="about-text">
+                        I'm a seasoned Drupal developer with 6+ years of experience building enterprise-level 
+                        web applications. I specialize in custom module and theme development, API integrations and performance optimization.
+                    </p>
+                    <p class="about-text">
+                        My expertise spans across Drupal 8, 9, and 10, with deep knowledge of PHP, MySQL, and modern 
+                        development practices. I'm passionate about clean code, security best practices, and scalable architecture.
+                    </p>
+                    <div class="about-buttons">
+                        <a href="https://github.com/1sumit-saini" target="_blank" class="btn btn-outline">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            View GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="about-cards">
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Custom Modules & Themes</h3>
+                        <p>Building scalable Drupal solutions</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>JSON:API & Graphql</h3>
+                        <p>Exposing data to decoupled frontends</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Certification Section -->
+    <section id="certification" class="projects">
+        <div class="container">
+            <h2 class="section-title">Certification</h2>
+            <div class="center">
+                <a href="https://dev.acquia.com/person/community/sumit-saini">
+                    <img alt="Acquia certified site builder - Drupal 9" src="https://dev.acquia.com/sites/default/files/images/Acquia%252520Certification%252520Badge_Drupal%252520Site%252520Builder_Drupal%2525209_0_5.svg"/>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <!-- <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" 
+                         alt="Project 2" class="project-img">
+                    <div class="project-overlay">
+                        <a href="#" class="btn btn-outline">Demo</a>
+                        <a href="#" class="btn btn-outline">Code</a>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Consectetur Management</h3>
+                        <p class="project-description">
+                            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Dolore magna aliqua ut enim ad minim veniam, quis nostrud exercitation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Drupal 9</span>
+                            <span class="tag">JSON:API</span>
+                            <span class="tag">Custom Modules</span>
+                            <span class="tag">Workflows</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: john.doe@example.com</p>
-  </section>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Drupal 8/9/10</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95"></div>
+                        </div>
+                    </div>
 
-  <footer>
-    &copy; 2025 John Doe
-  </footer>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">PHP/Symphony</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
 
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">MySQL</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Javascript</span>
+                            <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">REST/JSON:API</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Graphql</span>
+                            <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">jQuery</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">HTML/CSS</span>
+                            <span class="skill-percentage">50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Sumit Saini.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillsSection = document.querySelector('#skills');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        skillBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            bar.style.width = width + '%';
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (skillsSection) {
+                observer.observe(skillsSection);
+            }
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkillBars();
+        });
+    </script>
 </body>
 </html>
